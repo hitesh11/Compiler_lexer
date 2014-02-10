@@ -12,12 +12,11 @@ using namespace std;
 int main()
 {
 
-	string token_classes[70] = {"SEMI", "PLUS", "PLUSPLUS", "PLUSEQL", "MINUS", "MINUSMINUS", "MINUSEQL", "TIMES", "TIMESEQL", 
+	string token_classes[100] = {"SEMI", "PLUS", "PLUSPLUS", "PLUSEQL", "MINUS", "MINUSMINUS", "MINUSEQL", "TIMES", "TIMESEQL", 
 		"DIVIDES", "DIVIDESEQL", "EQL", "EQLEQL", "MOD", "MODEQL", "GR", "GE", "LS", "LE", "NE", "LP", "RP", "LPC", 
-		"RPC", "LPS", "RPS", "NUM", "REAL", "COMMA", "COLON", "ID", "NA", "EOI", "OR", "AND", "NOT", "DQT", "SQT", 
-		"AUTO", "BREAK", "CASE", "CHAR", "CONST", "CONTINUE", "DEFAULT", "DO", "DOUBLE", "ELSE", "ENUM", "EXTERN",
+		"RPC", "LPS", "RPS", "NUM", "REAL", "COMMA", "COLON", "ID", "NA", "EOI", "OR", "AND", "NOT", "AUTO", "BREAK", "CASE", "CHAR", "CONST", "CONTINUE", "DEFAULT", "DO", "DOUBLE", "ELSE", "ENUM", "EXTERN",
 		"FLOAT", "FOR", "GOTO", "IF", "INT", "LONG", "REGISTER", "RETURN", "SHORT", "SIGNED", "SIZEOF", "STATIC", 
-		"STRUCT", "SWITCH", "TYPEDEF", "UNION", "UNSIGNED", "VOID", "VOLATILE", "WHILE"};
+		"STRUCT", "SWITCH", "TYPEDEF", "UNION", "UNSIGNED", "VOID", "VOLATILE", "WHILE", "CHARCNST", "STRCNST"};
 
 	ifstream f("tst");
 	lexer lex(f);

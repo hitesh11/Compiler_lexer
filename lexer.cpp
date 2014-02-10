@@ -360,16 +360,6 @@ void lexer::advance(){
 		_curToken.set(lexer::COLON, ":");
 		return;
 	}
-
-	if(_ls.matchAndConsume("'")){
-		_curToken.set(lexer::SQT, "'");
-		return;
-	}
-
-	if(_ls.matchAndConsume("\"")){
-		_curToken.set(lexer::DQT, "\"");
-		return;
-	}
 	
 	if ((c>='0' && c<='9') || c == '.'){
 		//integer or real
@@ -401,6 +391,41 @@ void lexer::advance(){
 			fprintf(stderr, "%d: Unexpected floating point\n", _curToken.lineNumber);
 		return;
 	}
+
+	if(c == '\''){
+		//character constant
+		_ls.next();
+		c = _ls.peek();
+		stringstream s;
+		if(!isalnum(c))
+			fprintf(stderr, "%d: Invalid character\n", _curToken.lineNumber);
+		s.put(c);
+		_ls.next();
+		c = _ls.peek();
+		if(c!='\'')
+			fprintf(stderr, "%d: Expected <'>\n", _curToken.lineNumber);
+		_curToken.type = lexer::CHARCNST;
+		_curToken.value = s.str();
+		_ls.next();
+		return;
+	}
+
+	if(c == '"'){
+		//string constant
+		stringstream s;
+		_ls.next();
+		while((c=_ls.peek())!='"' && c!=EOF){
+			s.put(c);
+			_ls.next();
+		}
+		if(c==EOF)
+			fprintf(stderr, "%d: Unmatched <\">\n", _curToken.lineNumber);
+		_curToken.type = lexer::STRCNST;
+		_curToken.value = s.str();
+		_ls.next();
+		return;
+	}
+
 	
 	if (isalpha(c)){
 		//id or keyword

@@ -16,8 +16,14 @@ end;
 
 ans := 6 + 8 * (ty + 6 * (tyy + rt * (45+6)));
 
-if 6 + 8 * (ty + 6 * (tyy + rt * (45+6))) < 6 + 8 * (ty + 6 * (tyy + rt * (45+6))) then
-begin
-  h:=5;
-  ty:=454;
-end;
+if 6 + 8 * (ty + 6 * (tyy + rt * (45+6))) < 6 + 8 * (ty + 6 * (tyy + rt * (45+6)))
+
+'a'
+"this is a string yo!"
+
+3.2
+33.22
+.22
+33.
+33.23 23.2
+.
