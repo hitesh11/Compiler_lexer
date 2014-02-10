@@ -46,5 +46,6 @@ public:
 	bool matches(TokenType);
 	bool validTokenEnd(char c);
 	bool intialiseSplSet();
+	void nextValidTokenBegin();
 };
 #endif

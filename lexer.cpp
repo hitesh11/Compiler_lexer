@@ -61,16 +61,28 @@ lexer::token lexer::currentToken(){
 bool lexer::validToken(){
 	return _curToken.type != lexer::NA;
 }
+
 bool lexer::intialiseSplSet(){
 	char array_spl_char [] = ";+-=;,<>?:[]{}()~!#^*|.%%\'\"";
 	spl_char.insert(array_spl_char,array_spl_char+strlen(array_spl_char));
 }
+
 //returns true if c is a special character or space chararcters 
 bool lexer::validTokenEnd(char c){
-	if (spl_char.find(c)!=spl_char.end() || isspace(c))
+	if (spl_char.find(c)!=spl_char.end() || isspace(c) || c==EOF)
 		return true;
 	else
 		return false;
+}
+
+void lexer::nextValidTokenBegin(){
+
+		char c=(char)_ls.peek();
+		while(!validTokenEnd(c)){
+			
+			_ls.next();
+			c = (char)_ls.peek();
+		}	
 }
 bool lexer::matches(lexer::TokenType t){
 	if (t == _curToken.type){
@@ -80,8 +92,8 @@ bool lexer::matches(lexer::TokenType t){
 	}
 	return false;
 }
-lexer
-::token lexer::at(int p){
+
+lexer::token lexer::at(int p){
 
 	if (p==0) return _curToken;
 
@@ -403,7 +415,7 @@ void lexer::advance(){
 			fprintf(stderr, "%d: Unexpected floating point\n", _curToken.lineNumber);
 		else if (!validTokenEnd((char) c)){
 				fprintf(stderr, "%d: Invalid ending of a number constant -> %s followed by %c\n", _curToken.lineNumber, _curToken.value.c_str(), (char) c);
-				
+				nextValidTokenBegin();
 				}	
 		return;
 	}
