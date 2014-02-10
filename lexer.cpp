@@ -91,7 +91,7 @@ lexer
 		}
 	
 		if (_ls.match(":=", offset)){
-			t.type = lexer::ASSIGN;
+			t.type = lexer::EQL;
 			t.value = ":=";
 			offset += 2;
 			continue;
@@ -146,7 +146,7 @@ lexer
 		}
 	
 		if (_ls.matchAndConsume("=")){
-			_curToken.set(lexer::EQ, "=");
+			_curToken.set(lexer::EQL, "=");
 			continue;
 		}
 		
@@ -321,7 +321,7 @@ void lexer::advance(){
 		if(_ls.matchAndConsume("="))
 			_curToken.set(lexer::NOT, "!=");
 		else
-			_curToken.set(lexer::NE. "!");
+			_curToken.set(lexer::NE, "!");
 		return;
 	}
 
@@ -391,7 +391,7 @@ void lexer::advance(){
 			_ls.next();
 			}
 		}
-		if(bool)
+		if(real)
 			_curToken.type = lexer::REAL;
 		else
 			_curToken.type = lexer::INT;

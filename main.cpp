@@ -12,10 +12,12 @@ using namespace std;
 int main()
 {
 
-	string token_classes[30] = {"SEMI", "PLUS", "PLUSPLUS", "PLUSEQL", "MINUS", "MINUSMINUS", "MINUSEQL", "TIMES", "TIMESEQL", 
+	string token_classes[70] = {"SEMI", "PLUS", "PLUSPLUS", "PLUSEQL", "MINUS", "MINUSMINUS", "MINUSEQL", "TIMES", "TIMESEQL", 
 		"DIVIDES", "DIVIDESEQL", "EQL", "EQLEQL", "MOD", "MODEQL", "GR", "GE", "LS", "LE", "NE", "LP", "RP", "LPC", 
-		"RPC", "LPS", "RPS", "INT", "REAL", "COMMA", "COLON", "ID", "NA", "EOI", "IF", "THEN", "WHILE", "DO", "BEGIN", "END",
-		"OR", "AND", "NOT", "DQT", "SQT"};
+		"RPC", "LPS", "RPS", "NUM", "REAL", "COMMA", "COLON", "ID", "NA", "EOI", "OR", "AND", "NOT", "DQT", "SQT", 
+		"AUTO", "BREAK", "CASE", "CHAR", "CONST", "CONTINUE", "DEFAULT", "DO", "DOUBLE", "ELSE", "ENUM", "EXTERN",
+		"FLOAT", "FOR", "GOTO", "IF", "INT", "LONG", "REGISTER", "RETURN", "SHORT", "SIGNED", "SIZEOF", "STATIC", 
+		"STRUCT", "SWITCH", "TYPEDEF", "UNION", "UNSIGNED", "VOID", "VOLATILE", "WHILE"};
 
 	ifstream f("tst");
 	lexer lex(f);
