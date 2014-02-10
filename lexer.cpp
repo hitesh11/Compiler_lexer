@@ -16,11 +16,6 @@ void lexer::token::set(lexer::TokenType t, string v){
 lexer::lexer (istream& _fs):_ls(_fs), _curToken(lexer::NA, "", 0), e(lexer::NA, "", 0), _keywords(lexer::NA){
 	eof = false;
 	
-	
-	_keywords.insert("while", lexer::WHILE);
-	_keywords.insert("begin", lexer::BEGIN);
-	_keywords.insert("end", lexer::END);
-	
 	_keywords.insert("auto", lexer::AUTO);
 	_keywords.insert("break",lexer::BREAK);
 	_keywords.insert("case",lexer::CASE);
@@ -37,10 +32,23 @@ lexer::lexer (istream& _fs):_ls(_fs), _curToken(lexer::NA, "", 0), e(lexer::NA, 
 	_keywords.insert("for",lexer::FOR);
 	_keywords.insert("goto",lexer::GOTO);
 	_keywords.insert("if", lexer::IF);
-	
+	_keywords.insert("int", lexer::INT);
+	_keywords.insert("long", lexer::LONG);
+	_keywords.insert("register", lexer::REGISTER);
+	_keywords.insert("return", lexer::RETURN);
+	_keywords.insert("short", lexer::SHORT);
+	_keywords.insert("signed", lexer::SIGNED);
+	_keywords.insert("sizeof", lexer::SIZEOF);
+	_keywords.insert("static", lexer::STATIC);
+	_keywords.insert("struct", lexer::STRUCT);
+	_keywords.insert("switch", lexer::SWITCH);
+	_keywords.insert("typedef", lexer::TYPEDEF);
+	_keywords.insert("union", lexer::UNION);
+	_keywords.insert("unsigned", lexer::UNSIGNED);
+	_keywords.insert("void", lexer::VOID);
+	_keywords.insert("volatile", lexer::VOLATILE);
+	_keywords.insert("while", lexer::WHILE);
 
-	
-	
 	advance();
 }
 
