@@ -399,7 +399,7 @@ void lexer::advance(){
 
 		if(c == '.')
 			fprintf(stderr, "%d: Unexpected floating point\n", _curToken.lineNumber);
-		return;s
+		return;
 	}
 	
 	if (isalpha(c)){
