@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <cstdio>
+#include <cstring>
 using namespace std;
 
 lexer::token::token(lexer::TokenType t, string v, int l): type(t), value(v), lineNumber(l){
@@ -49,6 +50,7 @@ lexer::lexer (istream& _fs):_ls(_fs), _curToken(lexer::NA, "", 0), e(lexer::NA, 
 	_keywords.insert("volatile", lexer::VOLATILE);
 	_keywords.insert("while", lexer::WHILE);
 
+	intialiseSplSet();
 	advance();
 }
 
@@ -59,7 +61,17 @@ lexer::token lexer::currentToken(){
 bool lexer::validToken(){
 	return _curToken.type != lexer::NA;
 }
-
+bool lexer::intialiseSplSet(){
+	char array_spl_char [] = ";+-=;,<>?:[]{}()~!#^*|.%%\'\"";
+	spl_char.insert(array_spl_char,array_spl_char+strlen(array_spl_char));
+}
+//returns true if c is a special character or space chararcters 
+bool lexer::validTokenEnd(char c){
+	if (spl_char.find(c)!=spl_char.end() || isspace(c))
+		return true;
+	else
+		return false;
+}
 bool lexer::matches(lexer::TokenType t){
 	if (t == _curToken.type){
 		e = _curToken;
@@ -389,6 +401,10 @@ void lexer::advance(){
 
 		if(c == '.')
 			fprintf(stderr, "%d: Unexpected floating point\n", _curToken.lineNumber);
+		else if (!validTokenEnd((char) c)){
+				fprintf(stderr, "%d: Invalid ending of a number constant -> %s followed by %c\n", _curToken.lineNumber, _curToken.value.c_str(), (char) c);
+				
+				}	
 		return;
 	}
 
@@ -431,7 +447,8 @@ void lexer::advance(){
 		//id or keyword
 		_keywords.refresh();
 		stringstream s;
-		while ((c=_ls.peek())!=EOF && isalpha(c)){
+		char nextc;
+		while ((c=_ls.peek())!=EOF && isalnum(c)){
 			s.put(c);
 			_keywords.input(c);
 			_ls.next();
@@ -441,12 +458,22 @@ void lexer::advance(){
 		if (_keywords.validState()){
 			_curToken.type = _keywords.getSD();
 			_curToken.value = s.str();
+			nextc = (char) _ls.peek();
+			if (!validTokenEnd(nextc)){
+				cout << "next : "<<nextc <<endl;
+				fprintf(stderr, "%d: Keyword followed by invalid characters\n", _curToken.lineNumber);
+			}
 			return;
 		}
 		
 		//token is an id
 		_curToken.type = lexer::ID;
 		_curToken.value = s.str();
+		nextc = (char) _ls.peek();
+			if (!validTokenEnd(nextc)){
+				cout << "next : "<<nextc <<endl;
+				fprintf(stderr, "%d: Identifier followed by invalid characters\n", _curToken.lineNumber);
+			}	
 		return;
 	}
 	

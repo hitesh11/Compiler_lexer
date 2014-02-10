@@ -1,4 +1,6 @@
-ans:=5+8*7;
+a=1;
+a b ;
+1ans:=5+8*7..;
 
 while i<5 do
 begin
@@ -7,7 +9,7 @@ begin
   i:=i+1;
   
   while j<5 do
-  begin
+  begin	
     ddd:=9;
     ggg:=0;
   end;

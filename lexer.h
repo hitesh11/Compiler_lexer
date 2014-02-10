@@ -4,6 +4,7 @@
 #include <istream>
 #include <cstdio>
 #include <string>
+#include <set>
 #include "lookaheadStream.h"
 #include "trie.h"
 using namespace std;
@@ -27,6 +28,8 @@ public:
 		void set(TokenType, string);
 	} token;
 
+	char array_spl_char [];
+	set <char> spl_char;
 private:
 	lookaheadStream _ls;
 	token _curToken;
@@ -41,5 +44,7 @@ public:
 	bool validToken();
 	token at(int);
 	bool matches(TokenType);
+	bool validTokenEnd(char c);
+	bool intialiseSplSet();
 };
 #endif
