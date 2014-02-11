@@ -9,16 +9,20 @@
 using namespace std;
 
 
-int main()
+int main(int argc, char* argv[])
 {
+	if (argc <2){
+		fprintf(stderr, "Input file argument missing\n");
+		return -1;
 
+	}
 	string token_classes[100] = {"SEMI", "PLUS", "PLUSPLUS", "PLUSEQL", "MINUS", "MINUSMINUS", "MINUSEQL", "TIMES", "TIMESEQL", 
 		"DIVIDES", "DIVIDESEQL", "EQL", "EQLEQL", "MOD", "MODEQL", "GR", "GE", "LS", "LE", "NE", "LP", "RP", "LPC", 
 		"RPC", "LPS", "RPS", "NUM", "REAL", "COMMA", "COLON", "ID", "NA", "EOI", "OR", "AND", "NOT", "AUTO", "BREAK", "CASE", "CHAR", "CONST", "CONTINUE", "DEFAULT", "DO", "DOUBLE", "ELSE", "ENUM", "EXTERN",
 		"FLOAT", "FOR", "GOTO", "IF", "INT", "LONG", "REGISTER", "RETURN", "SHORT", "SIGNED", "SIZEOF", "STATIC", 
 		"STRUCT", "SWITCH", "TYPEDEF", "UNION", "UNSIGNED", "VOID", "VOLATILE", "WHILE", "CHARCNST", "STRCNST"};
 
-	ifstream f("tst2");
+	ifstream f(argv[1]);
 	lexer lex(f);
 	cout<<"Symbol Table :\n";
 	
