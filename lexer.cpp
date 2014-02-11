@@ -442,9 +442,17 @@ void lexer::advance(){
 		//string constant
 		stringstream s;
 		_ls.next();
-		while((c=_ls.peek())!='"' && c!=EOF){
+		while((c=_ls.peek())!='\"' && c!=EOF){
+			
 			s.put(c);
 			_ls.next();
+			
+			if ((c=='\\') && (_ls.peek()=='\"')){
+				s.put(_ls.peek());
+				_ls.next();
+			}
+			
+			
 		}
 		if(c==EOF)
 			fprintf(stderr, "%d: Unmatched <\">\n", _curToken.lineNumber);

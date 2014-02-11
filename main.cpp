@@ -18,7 +18,7 @@ int main()
 		"FLOAT", "FOR", "GOTO", "IF", "INT", "LONG", "REGISTER", "RETURN", "SHORT", "SIGNED", "SIZEOF", "STATIC", 
 		"STRUCT", "SWITCH", "TYPEDEF", "UNION", "UNSIGNED", "VOID", "VOLATILE", "WHILE", "CHARCNST", "STRCNST"};
 
-	ifstream f("tst1");
+	ifstream f("tst2");
 	lexer lex(f);
 	cout<<"Symbol Table :\n";
 	int line_num = 0;
