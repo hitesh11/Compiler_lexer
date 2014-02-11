@@ -32,7 +32,7 @@ lexer::lexer (istream& _fs):_ls(_fs), _curToken(lexer::NA, "", 0), e(lexer::NA, 
 	_keywords.insert("for",lexer::FOR);
 	_keywords.insert("goto",lexer::GOTO);
 	_keywords.insert("if", lexer::IF);
-	_keywords.insert("int", lexer::INT);
+	_keywords.insert("int", lexer::NUM);
 	_keywords.insert("long", lexer::LONG);
 	_keywords.insert("register", lexer::REGISTER);
 	_keywords.insert("return", lexer::RETURN);
@@ -372,7 +372,7 @@ void lexer::advance(){
 	}
 	
 	if ((c>='0' && c<='9') || c == '.'){
-		//number or real
+		//integer or real
 		bool real = false;
 		stringstream s;
 
@@ -394,12 +394,12 @@ void lexer::advance(){
 		if(bool)
 			_curToken.type = lexer::REAL;
 		else
-			_curToken.type = lexer::INT;
+			_curToken.type = lexer::NUM;
 		_curToken.value = s.str();
 
 		if(c == '.')
 			fprintf(stderr, "%d: Unexpected floating point\n", _curToken.lineNumber);
-		return;
+		return;s
 	}
 	
 	if (isalpha(c)){
