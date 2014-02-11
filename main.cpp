@@ -21,20 +21,13 @@ int main()
 	ifstream f("tst2");
 	lexer lex(f);
 	cout<<"Symbol Table :\n";
-	int line_num = 0;
-	int prev_line_num=0;
+	
 
 	while(lex.currentToken().type != lexer::EOI)
 	{
-		//Printing tokens line by line (ignoring blanck lines in between)
-		line_num=lex.currentToken().lineNumber;
-		if (line_num!=prev_line_num)
-			cout <<"\n";
-		prev_line_num= line_num;
-		cout<<"< "<<lex.currentToken().value<<", ";
-		cout<<token_classes[lex.currentToken().type]<<" > | ";
-			
-		
+		cout<<lex.currentToken().value<<" : ";
+		cout<<token_classes[lex.currentToken().type]<<" \n ";
+				
 		lex.advance();
 	}
 	cout << "\n Done !\n" ;

@@ -1,0 +1,23 @@
+int num = 123123;
+a ="asdfb\"jit 
+sdklafh"
+char c ='a';
+c = 'a'
+
+typedef struct token {
+		TokenType type;
+		string value;
+	
+		token(TokenType, string, int);
+		void set(TokenType, string);
+	} token;		
+
+while (num > 1000) {
+	
+	if (num%555==0)
+	printf("%d", num);
+	else
+	printf ("Number is not divisible by 555");
+
+
+}

@@ -63,7 +63,7 @@ bool lexer::validToken(){
 }
 
 bool lexer::intialiseSplSet(){
-	char array_spl_char [] = ";+-=;,<>?:[]{}()~!#^*|.%%\'\"";
+	char array_spl_char [] = ";+-=;,<>?:[]{}()~!#^*|.%\'\"";
 	spl_char.insert(array_spl_char,array_spl_char+strlen(array_spl_char));
 }
 
@@ -333,11 +333,11 @@ void lexer::advance(){
 		return;
 	}
 
-	if (_ls.matchAndConsume("%%")){
+	if (_ls.matchAndConsume("%")){
 		if(_ls.matchAndConsume("="))
-			_curToken.set(lexer::MODEQL, "%%=");
+			_curToken.set(lexer::MODEQL, "%=");
 		else
-			_curToken.set(lexer::MOD, "%%");
+			_curToken.set(lexer::MOD, "%");
 		return;
 	}
 
