@@ -1,0 +1,7 @@
+int a = 123;
+char _c_asdf_asdf_asdfs_ = 'c';
+string s = "compilers";
+string s = 'a';
+a = c % b;
+k = 2 + a*c + (int)string ;
+a = 123 abc;

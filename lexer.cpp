@@ -33,7 +33,7 @@ lexer::lexer (istream& _fs):_ls(_fs), _curToken(lexer::NA, "", 0), e(lexer::NA, 
 	_keywords.insert("for",lexer::FOR);
 	_keywords.insert("goto",lexer::GOTO);
 	_keywords.insert("if", lexer::IF);
-	_keywords.insert("int", lexer::NUM);
+	_keywords.insert("int", lexer::INT);
 	_keywords.insert("long", lexer::LONG);
 	_keywords.insert("register", lexer::REGISTER);
 	_keywords.insert("return", lexer::RETURN);
@@ -499,4 +499,5 @@ void lexer::advance(){
 	
 	_curToken.type = lexer::NA;
 	_curToken.value = "";
+	_ls.next();
 }
